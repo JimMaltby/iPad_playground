@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>V5 load csv</title>
+
+<body>
+      <div class="container">
+          <div id="chart"></div>
+      </div>
+</body>
+
+  <!-- load the d3.js library -->    	
+<script src="https://unpkg.com/d3@5.16.0/dist/d3.min.js">
+
+var csv = URL.createObjectURL(new Blob ([
+
+    name, start, end,
+    SOMETHING,123,321,
+    INVALID, 321, 123, 
+    ANOTHER, 111,333
+
+]));
+
+d3.csv(csv, processRow).then (processData)
+
+console.log("hello");
+
+function processRow (row, index, columnKeys) {
+
+    row[columnKeys[0]] = row[columnKeys [0]].trim().toLowerCase()
+
+    row.duration = row.end - row.start // this neW property doesn't change data.columns
+
+    if (row.end > row.start) return row
+    
+}
+
+function processData (data) { 
+    console.log(data, data.columns)
+}
+</script>
+</html>
